@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { ShaderGradientCanvas, ShaderGradient } from '@shadergradient/react'
 import './App.css'
 
 const sections = [
@@ -137,13 +138,15 @@ function App() {
     setIsAnimating(true)
     setPrevSection(activeSection)
     
+    // Wait for exit animation to complete (matches CSS transition of 1s)
     setTimeout(() => {
       setActiveSection(sectionId)
-    }, 400)
+    }, 500)
     
+    // Total animation duration (exit + enter)
     setTimeout(() => {
       setIsAnimating(false)
-    }, 800)
+    }, 1000)
   }
 
   const slideProjects = (direction) => {
@@ -162,38 +165,132 @@ function App() {
     setTimeout(() => setCopied(''), 2000)
   }
 
+  
+
   const renderSectionContent = (sectionId) => {
     switch (sectionId) {
       case 'home':
         return (
-          <div className="hero-content">
-            <div className="hero-grid">
-              <div className="hero-text">
-                <p className="hero-kicker">Hi, I'm</p>
-                <h1 className="hero-name">Khaleel Azaizy</h1>
-                <h2 className="hero-title">Software Engineer</h2>
-                <p className="hero-description">
-                  I craft thoughtful digital experiences — clean layouts, confident typography, 
-                  and purposeful interactions that help brands speak clearly online.
-                </p>
-                <button className="hero-cta" onClick={() => handleNavClick('about')}>
-                  Explore My Work
-                  <span className="cta-arrow">→</span>
-                </button>
-              </div>
-              <div className="hero-visual">
-                <div className="hero-frame">
-                  <div className="frame-corner top-left"></div>
-                  <div className="frame-corner top-right"></div>
-                  <div className="frame-corner bottom-left"></div>
-                  <div className="frame-corner bottom-right"></div>
-                  <div className="hero-image-placeholder">
-                    <img src="src/assets/image.png" alt="Khaleel Azaizy" />
+          <>
+            <ShaderGradientCanvas
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                zIndex: 0,
+                pointerEvents: 'none',
+              }}
+            >
+              <ShaderGradient
+                animate="on"
+                axesHelper="off"
+                brightness={1.2}
+                cAzimuthAngle={180}
+                cDistance={3.1}
+                cPolarAngle={70}
+                cameraZoom={1}
+                color1="#000000"
+                color2="#ff0000"
+                color3="#c60000"
+                envPreset="city"
+                fov={50}
+                frameRate={10}
+                grain="on"
+                lightType="3d"
+                pixelDensity={2.1}
+                positionX={-1.4}
+                positionY={-1.1}
+                positionZ={0}
+                reflection={0.1}
+                rotationX={0}
+                rotationY={10}
+                rotationZ={50}
+                shader="defaults"
+                type="plane"
+                uAmplitude={1.9}
+                uDensity={4}
+                uFrequency={5.5}
+                uSpeed={0.1}
+                uStrength={5.7}
+                uTime={0}
+                wireframe={false}
+              />
+            </ShaderGradientCanvas>
+            <div className="hero-content">
+              <div className="hero-grid">
+                <div className="hero-text">
+                  <p className="hero-kicker">Hi, I'm</p>
+                  <h1 className="hero-name">Khaleel Azaizy</h1>
+                  <h2 className="hero-title">Software Engineer</h2>
+                  <p className="hero-description">
+                    I craft thoughtful digital experiences clean layouts, confident typography, 
+                    and purposeful interactions that help brands speak clearly online.
+                  </p>
+                  <button className="hero-cta" onClick={() => handleNavClick('about')}>
+                    Explore My Work
+                    <span className="cta-arrow">→</span>
+                  </button>
+                </div>
+                <div className="hero-visual">
+                  <div className="code-window">
+                    <div className="code-header">
+                      <div className="code-dots">
+                        <span className="dot red"></span>
+                        <span className="dot yellow"></span>
+                        <span className="dot green"></span>
+                      </div>
+                      <span className="code-title">developer.js</span>
+                    </div>
+                    <div className="code-body">
+                      <div className="code-line">
+                        <span className="line-number">1</span>
+                        <span className="code-keyword">const</span> <span className="code-variable">developer</span> <span className="code-operator">=</span> <span className="code-bracket">{'{'}</span>
+                      </div>
+                      <div className="code-line">
+                        <span className="line-number">2</span>
+                        <span className="code-property">  name</span><span className="code-operator">:</span> <span className="code-string">"Khaleel Azaizy"</span><span className="code-operator">,</span>
+                      </div>
+                      <div className="code-line">
+                        <span className="line-number">3</span>
+                        <span className="code-property">  role</span><span className="code-operator">:</span> <span className="code-string">"Software Engineer"</span><span className="code-operator">,</span>
+                      </div>
+                      <div className="code-line">
+                        <span className="line-number">4</span>
+                        <span className="code-property">  skills</span><span className="code-operator">:</span> <span className="code-bracket">[</span>
+                      </div>
+                      <div className="code-line">
+                        <span className="line-number">5</span>
+                        <span className="code-string">    "React"</span><span className="code-operator">,</span> <span className="code-string">"Node.js"</span><span className="code-operator">,</span>
+                      </div>
+                      <div className="code-line">
+                        <span className="line-number">6</span>
+                        <span className="code-string">    "TypeScript"</span><span className="code-operator">,</span> <span className="code-string">"Python"</span>
+                      </div>
+                      <div className="code-line">
+                        <span className="line-number">7</span>
+                        <span className="code-bracket">  ]</span><span className="code-operator">,</span>
+                      </div>
+                      <div className="code-line">
+                        <span className="line-number">8</span>
+                        <span className="code-property">  passion</span><span className="code-operator">:</span> <span className="code-string">"Building things"</span>
+                      </div>
+                      <div className="code-line">
+                        <span className="line-number">9</span>
+                        <span className="code-bracket">{'}'}</span><span className="code-operator">;</span>
+                      </div>
+                      <div className="code-line typing">
+                        <span className="line-number">10</span>
+                        <span className="cursor">|</span>
+                      </div>
+                    </div>
+                    <div className="code-glow"></div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </>
         )
 
       case 'about':
@@ -399,18 +496,20 @@ function App() {
     return (
       <div className="loading-screen">
         <div className="loader-content">
-          <div className="loader-logo">
-            <span className="loader-letter">K</span>
-            <div className="loader-ring"></div>
-            <div className="loader-ring ring-2"></div>
-          </div>
-          <div className="loader-text">
-            <span>K</span><span>H</span><span>A</span><span>L</span><span>E</span><span>E</span><span>L</span>
+          <div className="loader-name">
+            {'KHALEEL'.split('').map((letter, i) => (
+              <span key={i} className="loader-letter" style={{ '--delay': `${i * 0.15}s` }}>
+                <span className="letter-bg">{letter}</span>
+                <span className="letter-fill">{letter}</span>
+              </span>
+            ))}
             <span className="loader-space"></span>
-            <span>A</span><span>Z</span><span>A</span><span>I</span><span>Z</span><span>Y</span>
-          </div>
-          <div className="loader-bar">
-            <div className="loader-progress"></div>
+            {'AZAIZY'.split('').map((letter, i) => (
+              <span key={i + 7} className="loader-letter" style={{ '--delay': `${(i + 8) * 0.15}s` }}>
+                <span className="letter-bg">{letter}</span>
+                <span className="letter-fill">{letter}</span>
+              </span>
+            ))}
           </div>
         </div>
       </div>
