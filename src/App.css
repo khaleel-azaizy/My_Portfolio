@@ -16,6 +16,7 @@
   --white: #ffffff;
   --gray: #888;
   --gray-dark: #444;
+  --dark-white: rgba(255, 255, 255, 0.833);
 }
 
 * {
@@ -26,7 +27,7 @@
 
 /* CUSTOM SCROLLBAR */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -36,8 +37,8 @@
 
 ::-webkit-scrollbar-thumb {
   background: var(--red);
-  border-radius: 5px;
-  border: 2px solid var(--black-light);
+  border-radius: 3px;
+  border: 1px solid var(--black-light);
   /* Creates padding effect */
 }
 
@@ -339,6 +340,9 @@ html {
   overflow: hidden;
   position: relative;
   z-index: 1;
+  /* Enable smooth touch scrolling on mobile */
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y pan-x;
 }
 
 .section {
@@ -353,6 +357,9 @@ html {
   position: absolute;
   top: 0;
   left: 0;
+  /* Enable smooth scrolling for iOS and touch devices */
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 
 .section-heading {
@@ -970,22 +977,89 @@ textarea:focus {
 }
 
 .submit-btn {
-  background: var(--white);
-  color: var(--black);
-  padding: 15px;
-  border: none;
+  background: var(--red-dark);
+  color: var(--white);
+  padding: 16px 32px;
+  border: 2px solid var(--red);
   border-radius: 8px;
   font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   cursor: pointer;
   display: flex;
+  align-items: center;
   justify-content: center;
   gap: 10px;
-  transition: 0.3s;
+  z-index: 2;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(230, 57, 70, 0.3);
+}
+.submit-btn p {
+  color: var(--white);
+  z-index: 2;
+}
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: var(--dark-white);
+  transition: width 0.6s, height 0.6s, top 0.6s, left 0.6s;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.submit-btn:hover::before {
+  width: 101%;
+  height: 300px;
 }
 
 .submit-btn:hover {
-  background: var(--red);
-  color: var(--white);
+  color: var(--black);
+  border-color: var(--white);
+  box-shadow: 0 0 30px rgba(230, 57, 70, 0.5), 0 0 60px rgba(230, 57, 70, 0.2);
+  transform: translateY(-2px);
+}
+.submit-btn:hover p {
+  color: var(--black);
+}
+
+.submit-btn p,
+.submit-btn span {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s;
+}
+
+.submit-btn:hover span {
+  transform: translateX(5px);
+}
+
+.submit-success,
+.submit-error {
+  margin-top: 15px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.submit-success {
+  background: rgba(46, 213, 115, 0.1);
+  color: #2ed573;
+  border: 1px solid rgba(46, 213, 115, 0.3);
+}
+
+.submit-error {
+  background: rgba(230, 57, 70, 0.1);
+  color: var(--red);
+  border: 1px solid rgba(230, 57, 70, 0.3);
 }
 
 .contact-item {
@@ -1345,6 +1419,9 @@ textarea:focus {
   .main-content {
     height: calc(100vh - 70px);
     width: 100%;
+    /* Enable smooth touch scrolling on mobile */
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y pan-x;
   }
 
   .section {
@@ -1353,6 +1430,8 @@ textarea:focus {
     overflow-x: hidden;
     /* Enable touch scrolling */
     -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    overscroll-behavior-y: contain;
     align-items: flex-start;
     /* Allow content to flow down */
   }

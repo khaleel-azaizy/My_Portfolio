@@ -30,6 +30,9 @@ html, body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  /* Enable smooth touch scrolling on mobile devices */
+  -webkit-overflow-scrolling: touch;
+  touch-action: manipulation;
 }
 
 h1 {

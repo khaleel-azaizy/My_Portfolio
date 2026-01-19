@@ -4,11 +4,45 @@ import { motion } from 'framer-motion'
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
     const [copied, setCopied] = useState('')
+    const [submitStatus, setSubmitStatus] = useState('')
 
     const copyToClipboard = (text, type) => {
         navigator.clipboard.writeText(text)
         setCopied(type)
         setTimeout(() => setCopied(''), 2000)
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        
+        // Validate form
+        if (!formData.name || !formData.email || !formData.message) {
+            setSubmitStatus('error')
+            setTimeout(() => setSubmitStatus(''), 3000)
+            return
+        }
+
+        // Create mailto link with form data
+        const subject = encodeURIComponent(formData.subject || 'Portfolio Contact')
+        const body = encodeURIComponent(
+            `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+        )
+        const mailtoLink = `mailto:khaleelazaizy@gmail.com?subject=${subject}&body=${body}`
+        
+        // Create a temporary anchor element and click it to open email client
+        const anchor = document.createElement('a')
+        anchor.href = mailtoLink
+        anchor.target = '_blank'
+        document.body.appendChild(anchor)
+        anchor.click()
+        document.body.removeChild(anchor)
+        
+        // Show success message and reset form
+        setSubmitStatus('success')
+        setTimeout(() => {
+            setSubmitStatus('')
+            setFormData({ name: '', email: '', subject: '', message: '' })
+        }, 3000)
     }
 
     return (
@@ -56,7 +90,7 @@ const Contact = () => {
                 </motion.div>
                 <motion.form
                     className="contact-form"
-                    onSubmit={(e) => e.preventDefault()}
+                    onSubmit={handleSubmit}
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -68,12 +102,14 @@ const Contact = () => {
                             placeholder="Your Name"
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                            required
                         />
                         <input
                             type="email"
                             placeholder="Your Email"
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            required
                         />
                     </div>
                     <input
@@ -87,10 +123,29 @@ const Contact = () => {
                         rows="4"
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        required
                     />
                     <button type="submit" className="submit-btn">
-                        Send Message <span>→</span>
+                       <p>Send Message</p> <span>→</span>
                     </button>
+                    {submitStatus === 'success' && (
+                        <motion.p 
+                            className="submit-success"
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                        >
+                            ✓ Opening email client...
+                        </motion.p>
+                    )}
+                    {submitStatus === 'error' && (
+                        <motion.p 
+                            className="submit-error"
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                        >
+                            ✗ Please fill in all required fields
+                        </motion.p>
+                    )}
                 </motion.form>
             </div>
             <footer className="contact-footer">
