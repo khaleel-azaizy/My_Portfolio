@@ -54,14 +54,95 @@ const Hero = ({ onNavigate }) => {
                     </div>
                 </motion.div>
 
-                {/* Replaced Code Window with 3D Element - NOW REMOVED per user request */}
+                {/* Code Window Visual */}
                 <motion.div
                     className="hero-visual"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
+                    animate={{ opacity: 1, scale: 1, rotateY: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
+                    whileHover={{
+                        y: -8,
+                        transition: { duration: 0.3 }
+                    }}
                 >
-                    {/* Placeholder or empty for now */}
+                    <motion.div
+                        className="code-window"
+                        whileHover={{
+                            boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(230, 57, 70, 0.15)',
+                            borderColor: 'rgba(230, 57, 70, 0.4)'
+                        }}
+                        transition={{ duration: 0.3 }}
+                        style={{ border: '1px solid rgba(230, 57, 70, 0.3)' }}
+                    >
+                        <div className="code-header">
+                            <div className="code-dots">
+                                <motion.span
+                                    className="dot red"
+                                    whileHover={{
+                                        scale: 1.4,
+                                        boxShadow: '0 0 12px #ff5f57',
+                                    }}
+                                    style={{ cursor: 'pointer' }}
+                                />
+                                <motion.span
+                                    className="dot yellow"
+                                    whileHover={{
+                                        scale: 1.4,
+                                        boxShadow: '0 0 12px #ffbd2e',
+                                    }}
+                                    style={{ cursor: 'pointer' }}
+                                />
+                                <motion.span
+                                    className="dot green"
+                                    whileHover={{
+                                        scale: 1.4,
+                                        boxShadow: '0 0 12px #28c840',
+                                    }}
+                                    style={{ cursor: 'pointer' }}
+                                />
+                            </div>
+                            <motion.span
+                                className="code-title"
+                                whileHover={{ color: '#fff' }}
+                            >
+                                developer.js
+                            </motion.span>
+                        </div>
+                        <div className="code-body">
+                            <div className="code-line">
+                                <span className="line-number">1</span>
+                                <span><span className="code-keyword">const</span> <span className="code-variable">developer</span> <span className="code-operator">=</span> <span className="code-bracket">{'{'}</span></span>
+                            </div>
+                            <div className="code-line">
+                                <span className="line-number">2</span>
+                                <span>  <span className="code-property">name</span>: <span className="code-string">"Khaleel Azaizy"</span>,</span>
+                            </div>
+                            <div className="code-line">
+                                <span className="line-number">3</span>
+                                <span>  <span className="code-property">role</span>: <span className="code-string">"Full Stack Developer"</span>,</span>
+                            </div>
+                            <div className="code-line">
+                                <span className="line-number">4</span>
+                                <span>  <span className="code-property">skills</span>: [<span className="code-string">"React"</span>, <span className="code-string">"Node"</span>, <span className="code-string">"Python"</span>],</span>
+                            </div>
+                            <div className="code-line">
+                                <span className="line-number">5</span>
+                                <span>  <span className="code-property">passion</span>: <span className="code-string">"Building great UX"</span>,</span>
+                            </div>
+                            <div className="code-line">
+                                <span className="line-number">6</span>
+                                <span>  <span className="code-property">available</span>: <span className="code-keyword">true</span>,</span>
+                            </div>
+                            <div className="code-line">
+                                <span className="line-number">7</span>
+                                <span><span className="code-bracket">{'}'}</span>;</span>
+                            </div>
+                            <div className="code-line" style={{ marginTop: '10px' }}>
+                                <span className="line-number">8</span>
+                                <span><span className="code-keyword">export default</span> <span className="code-variable">developer</span>;</span>
+                            </div>
+                        </div>
+                    </motion.div>
                 </motion.div>
             </div>
         </div>
