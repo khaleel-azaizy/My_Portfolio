@@ -20,7 +20,7 @@ const Hero = ({ onNavigate }) => {
                                 2000,
                                 'Full Stack Developer',
                                 2000,
-                                'UI/UX Enthusiast',
+                                'AI Enthusiast',
                                 2000,
                             ]}
                             wrapper="span"
@@ -32,7 +32,7 @@ const Hero = ({ onNavigate }) => {
                         Building digital experiences that merge <span className="highlight">performance</span> with <span className="highlight">beauty</span>.
                         Specializing in modern web technologies and scalable architectures.
                     </p>
-                    <div style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
+                    <div className='buttons-box' style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
                         <motion.button
                             className="hero-cta"
                             whileHover={{ scale: 1.05 }}

@@ -53,7 +53,7 @@ const Projects = () => {
                                     flexShrink: 0
                                 }}
                             >
-                                <span className="project-icon">{project.icon}</span>
+                                <span className="project-icon">{project.icon && <project.icon />}</span>
                                 <h3 className="project-title">{project.title}</h3>
                                 <span className="project-type">{project.type}</span>
                                 <p className="project-description">{project.description}</p>

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { FaGraduationCap, FaReact, FaRobot, FaCloud } from 'react-icons/fa'
 
 const Education = () => {
     return (
@@ -15,7 +16,7 @@ const Education = () => {
                         transition={{ duration: 0.6 }}
                         whileHover={{ scale: 1.02 }}
                     >
-                        <div className="edu-icon">🎓</div>
+                        <div className="edu-icon"><FaGraduationCap /></div>
                         <h3 className="edu-degree">B.Sc. Software Engineering</h3>
                         <p className="edu-school">Kinneret Academic College</p>
                         <p className="edu-year">2021 – Present</p>
@@ -35,7 +36,7 @@ const Education = () => {
                             viewport={{ once: true }}
                             transition={{ delay: 0.1 }}
                         >
-                            <div className="st-icon">⚛️</div>
+                            <div className="st-icon"><FaReact /></div>
                             <div className="st-content">
                                 <h4>Full Stack Development</h4>
                                 <p>Mastered React, Node.js, and Express through building complex projects like the Daily Habit Tracker and Travel Diary.</p>
@@ -49,7 +50,7 @@ const Education = () => {
                             viewport={{ once: true }}
                             transition={{ delay: 0.2 }}
                         >
-                            <div className="st-icon">🤖</div>
+                            <div className="st-icon"><FaRobot /></div>
                             <div className="st-content">
                                 <h4>Machine Learning & AI</h4>
                                 <p>Deep dived into Neural Networks, PyTorch, and NLP. Implemented models for income classification and sentiment analysis.</p>
@@ -63,7 +64,7 @@ const Education = () => {
                             viewport={{ once: true }}
                             transition={{ delay: 0.3 }}
                         >
-                            <div className="st-icon">☁️</div>
+                            <div className="st-icon"><FaCloud /></div>
                             <div className="st-content">
                                 <h4>Cloud & DevOps</h4>
                                 <p>Learned Docker, Firebase, and basic CI/CD pipelines to deploy and manage applications efficiently.</p>

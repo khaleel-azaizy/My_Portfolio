@@ -16,7 +16,7 @@ const Skills = () => {
                         transition={{ delay: idx * 0.05, duration: 0.3 }}
                         whileHover={{ scale: 1.1, rotate: 5 }}
                     >
-                        <span className="skill-icon">{skill.icon}</span>
+                        <span className="skill-icon">{skill.icon && <skill.icon />}</span>
                         <span className="skill-name">{skill.name}</span>
                     </motion.div>
                 ))}

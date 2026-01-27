@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa'
 
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
@@ -57,7 +58,7 @@ const Contact = () => {
                     transition={{ duration: 0.6 }}
                 >
                     <div className="contact-item" onClick={() => copyToClipboard('khaleelazaizy@gmail.com', 'email')}>
-                        <span className="contact-icon">✉</span>
+                        <span className="contact-icon"><FaEnvelope /></span>
                         <div className="contact-details">
                             <span className="contact-label">Email</span>
                             <span className="contact-value">khaleelazaizy@gmail.com</span>
@@ -65,7 +66,7 @@ const Contact = () => {
                         <span className={`copy-indicator ${copied === 'email' ? 'show' : ''}`}>Copied!</span>
                     </div>
                     <div className="contact-item" onClick={() => copyToClipboard('0546585424', 'phone')}>
-                        <span className="contact-icon">📱</span>
+                        <span className="contact-icon"><FaPhone /></span>
                         <div className="contact-details">
                             <span className="contact-label">Phone</span>
                             <span className="contact-value">0546585424</span>
@@ -73,7 +74,7 @@ const Contact = () => {
                         <span className={`copy-indicator ${copied === 'phone' ? 'show' : ''}`}>Copied!</span>
                     </div>
                     <div className="contact-item">
-                        <span className="contact-icon">📍</span>
+                        <span className="contact-icon"><FaMapMarkerAlt /></span>
                         <div className="contact-details">
                             <span className="contact-label">Location</span>
                             <span className="contact-value">Daborya, Israel</span>
@@ -126,7 +127,7 @@ const Contact = () => {
                         required
                     />
                     <button type="submit" className="submit-btn">
-                       <p>Send Message</p> <span>→</span>
+                       <p>Send Message</p>
                     </button>
                     {submitStatus === 'success' && (
                         <motion.p 
