@@ -15,6 +15,8 @@ import { sections } from './data'
 function App() {
   const [isLoading, setIsLoading] = useState(true)
   const [activeSection, setActiveSection] = useState('home')
+  const [isMobile, setIsMobile] = useState(false)
+  const [slideDirection, setSlideDirection] = useState(1) // 1 = forward, -1 = backward
   const touchStartX = useRef(0)
   const touchStartY = useRef(0)
   const mainContentRef = useRef(null)
@@ -30,6 +32,25 @@ function App() {
     return () => clearTimeout(timer)
   }, [])
 
+  // Detect mobile screen
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Track navigation direction
+  const handleNavigation = (newSection) => {
+    const sectionNames = sections.map(s => s.id)
+    const newIndex = sectionNames.indexOf(newSection)
+    const currentIndex = sectionNames.indexOf(activeSection)
+    setSlideDirection(newIndex > currentIndex ? 1 : -1)
+    setActiveSection(newSection)
+  }
+
   // Handle touch swipe gestures for mobile navigation
   useEffect(() => {
     const handleTouchStart = (e) => {
@@ -44,16 +65,17 @@ function App() {
       const diffY = touchStartY.current - touchEndY
       
       // Only trigger navigation if horizontal swipe is more significant than vertical
-      // and if we're not scrolling within content
       if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
         const sectionNames = sections.map(s => s.id)
         const currentIndex = sectionNames.indexOf(activeSection)
         
         if (diffX > 0 && currentIndex < sectionNames.length - 1) {
-          // Swipe left -> next section
+          // Swipe left -> next section (slides in from right)
+          setSlideDirection(1)
           setActiveSection(sectionNames[currentIndex + 1])
         } else if (diffX < 0 && currentIndex > 0) {
-          // Swipe right -> previous section
+          // Swipe right -> previous section (slides in from left)
+          setSlideDirection(-1)
           setActiveSection(sectionNames[currentIndex - 1])
         }
       }
@@ -123,7 +145,7 @@ function App() {
 
   const renderSectionContent = () => {
     switch (activeSection) {
-      case 'home': return <Hero key="home" onNavigate={setActiveSection} />
+      case 'home': return <Hero key="home" onNavigate={handleNavigation} />
       case 'about': return <About key="about" />
       case 'projects': return <Projects key="projects" />
       case 'skills': return <Skills key="skills" />
@@ -131,6 +153,19 @@ function App() {
       case 'contact': return <Contact key="contact" />
       default: return null
     }
+  }
+
+  // Animation variants for desktop and mobile
+  const desktopVariants = {
+    initial: { opacity: 0, scale: 0.95, filter: 'blur(10px)' },
+    animate: { opacity: 1, scale: 1, filter: 'blur(0px)' },
+    exit: { opacity: 0, scale: 1.05, filter: 'blur(10px)' }
+  }
+
+  const mobileVariants = {
+    initial: { x: slideDirection * 100 + '%', zIndex: 2 },
+    animate: { x: 0, zIndex: 2 },
+    exit: { x: 0, zIndex: 1, opacity: 1 }
   }
 
   if (isLoading) {
@@ -147,19 +182,22 @@ function App() {
       <Navbar
         sections={sections}
         activeSection={activeSection}
-        onNavClick={setActiveSection}
+        onNavClick={handleNavigation}
       />
 
       {/* Main Content Area */}
       <main className="main-content" ref={mainContentRef}>
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="popLayout">
           <motion.section
             key={activeSection}
             className={`section section-${activeSection}`}
-            initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
-            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, scale: 1.05, filter: 'blur(10px)' }}
-            transition={{ duration: 0.5, ease: "circOut" }}
+            initial={isMobile ? mobileVariants.initial : desktopVariants.initial}
+            animate={isMobile ? mobileVariants.animate : desktopVariants.animate}
+            exit={isMobile ? mobileVariants.exit : desktopVariants.exit}
+            transition={{ 
+              duration: isMobile ? 0.4 : 0.5, 
+              ease: isMobile ? [0.32, 0.72, 0, 1] : "circOut" 
+            }}
           >
             {renderSectionContent()}
           </motion.section>

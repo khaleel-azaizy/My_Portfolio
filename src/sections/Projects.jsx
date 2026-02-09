@@ -1,28 +1,38 @@
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { projects } from '../data'
 
 const Projects = () => {
     const constraintsRef = useRef(null)
     const cardWidth = 340 // card width + gap
+    const [isMobile, setIsMobile] = useState(false)
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768)
+        }
+        checkMobile()
+        window.addEventListener('resize', checkMobile)
+        return () => window.removeEventListener('resize', checkMobile)
+    }, [])
 
     return (
         <div className="projects-content">
             <h2 className="section-heading">Projects</h2>
-            <div className="projects-slider-wrapper" style={{ overflow: 'hidden' }}>
+            <div className="projects-slider-wrapper" style={{ overflow: isMobile ? 'visible' : 'hidden' }}>
                 <motion.div
                     ref={constraintsRef}
                     className="projects-drag-container"
                     style={{
                         width: '100%',
                         overflow: 'visible',
-                        cursor: 'grab'
+                        cursor: isMobile ? 'default' : 'grab'
                     }}
                 >
                     <motion.div
                         className="projects-grid-inner"
-                        drag="x"
-                        dragConstraints={{
+                        drag={isMobile ? false : "x"}
+                        dragConstraints={isMobile ? undefined : {
                             left: -(projects.length * cardWidth - window.innerWidth + 400),
                             right: 0
                         }}
@@ -30,11 +40,12 @@ const Projects = () => {
                         dragTransition={{ bounceStiffness: 300, bounceDamping: 30 }}
                         style={{
                             display: 'flex',
+                            flexDirection: isMobile ? 'column' : 'row',
                             gap: '20px',
-                            padding: '20px 50px 20px 10px',
-                            cursor: 'grab'
+                            padding: isMobile ? '20px 10px' : '20px 50px 20px 10px',
+                            cursor: isMobile ? 'default' : 'grab'
                         }}
-                        whileTap={{ cursor: 'grabbing' }}
+                        whileTap={isMobile ? {} : { cursor: 'grabbing' }}
                     >
                         {projects.map((project, idx) => (
                             <motion.div
@@ -49,7 +60,8 @@ const Projects = () => {
                                     borderColor: 'rgba(230, 57, 70, 0.3)'
                                 }}
                                 style={{
-                                    minWidth: '320px',
+                                    minWidth: isMobile ? '100%' : '320px',
+                                    width: isMobile ? '100%' : 'auto',
                                     flexShrink: 0
                                 }}
                             >
