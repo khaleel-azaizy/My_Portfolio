@@ -149,8 +149,8 @@ html {
   right: 0;
   bottom: 0;
   background:
-    linear-gradient(90deg, rgba(230, 57, 70, 0.03) 1px, transparent 1px),
-    linear-gradient(rgba(230, 57, 70, 0.03) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(122, 2, 12, 0.185) 1px, transparent 1px),
+    linear-gradient(rgba(90, 2, 9, 0.336) 1px, transparent 1px);
   background-size: 50px 50px;
   animation: gridMove 20s linear infinite;
   pointer-events: none;
