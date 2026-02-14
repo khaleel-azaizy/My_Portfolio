@@ -368,7 +368,7 @@ html {
   font-size: clamp(28px, 4vw, 44px);
   font-weight: 800;
   color: var(--white);
-  margin-bottom: 50px;
+  margin: 50px 0 30px;
   position: relative;
   text-transform: uppercase;
   letter-spacing: 6px;
@@ -1308,7 +1308,6 @@ textarea:focus {
     display: none;
   }
 
-
   .nav-brand {
     display: none;
   }
@@ -1355,7 +1354,7 @@ textarea:focus {
     color: var(--red);
   }
 
-
+  
   .hero-grid {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -1371,6 +1370,7 @@ textarea:focus {
     display: flex;
     flex-direction: column;
     gap: 40px;
+  
   }
 
   .projects-slider-wrapper {
@@ -1380,6 +1380,11 @@ textarea:focus {
   .projects-grid-inner {
     flex-direction: column;
   }
+  .skills-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+  }
+
 }
 
 
@@ -1591,9 +1596,7 @@ textarea:focus {
     gap: 15px;
   }
 
-  .skill-card {
-    padding: 15px;
-  }
+
 
   .skill-icon {
     font-size: 24px;

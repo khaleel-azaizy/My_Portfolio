@@ -64,6 +64,12 @@ function App() {
       const diffX = touchStartX.current - touchEndX
       const diffY = touchStartY.current - touchEndY
       
+      // Skip horizontal swipe navigation if the touch originated inside the projects slider
+      const isInsideProjectsSlider = e.target.closest('.projects-slider-wrapper')
+      if (isInsideProjectsSlider && Math.abs(diffX) > Math.abs(diffY) && !isMobile) {
+        return
+      }
+
       // Only trigger navigation if horizontal swipe is more significant than vertical
       if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
         const sectionNames = sections.map(s => s.id)
@@ -77,6 +83,29 @@ function App() {
           // Swipe right -> previous section (slides in from left)
           setSlideDirection(-1)
           setActiveSection(sectionNames[currentIndex - 1])
+        }
+      }
+
+      // Vertical swipe navigation: only navigate if section content is fully scrolled
+      if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 50) {
+        const sectionEl = mainContentRef.current?.querySelector('.section')
+        if (sectionEl) {
+          const { scrollTop, scrollHeight, clientHeight } = sectionEl
+          const atBottom = scrollTop + clientHeight >= scrollHeight - 5
+          const atTop = scrollTop <= 5
+
+          const sectionNames = sections.map(s => s.id)
+          const currentIndex = sectionNames.indexOf(activeSection)
+
+          if (diffY > 0 && atBottom && currentIndex < sectionNames.length - 1) {
+            // Swipe up (scroll down) & at bottom -> next section
+            setSlideDirection(1)
+            setActiveSection(sectionNames[currentIndex + 1])
+          } else if (diffY < 0 && atTop && currentIndex > 0) {
+            // Swipe down (scroll up) & at top -> previous section
+            setSlideDirection(-1)
+            setActiveSection(sectionNames[currentIndex - 1])
+          }
         }
       }
     }
@@ -103,6 +132,17 @@ function App() {
       
       // Prevent navigation while already scrolling
       if (isScrolling.current) return
+
+      // Check if the current section still has content to scroll
+      const sectionEl = mainContentRef.current?.querySelector('.section')
+      if (sectionEl) {
+        const { scrollTop, scrollHeight, clientHeight } = sectionEl
+        const atBottom = scrollTop + clientHeight >= scrollHeight - 5
+        const atTop = scrollTop <= 5
+
+        if (e.deltaY > 0 && !atBottom) return // still content below, let it scroll
+        if (e.deltaY < 0 && !atTop) return     // still content above, let it scroll
+      }
       
       const sectionNames = sections.map(s => s.id)
       const currentIndex = sectionNames.indexOf(activeSection)
