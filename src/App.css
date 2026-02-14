@@ -809,15 +809,15 @@ html {
 }
 
 .skill-card {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(10, 10, 10, 0.315);
   padding: 25px;
   border-radius: 12px;
   display: flex;
+  border: 1px solid rgba(117, 49, 49, 0.384);
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 15px;
-  border: 1px solid transparent;
   transition: all 0.3s;
 }
 
@@ -825,6 +825,11 @@ html {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.1);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.skill-icon {
+  font-size: 32px;
+  transition: all 0.3s ease;
 }
 
 .skill-card.frontend:hover {
@@ -839,17 +844,190 @@ html {
   border-color: #f1502f;
 }
 
-.skill-icon {
-  font-size: 32px;
-}
-
 .skill-name {
   font-weight: 600;
   color: #ddd;
   font-size: 0.9rem;
 }
 
-/* EDUCATION & CONTACT */
+/* Tech Brand Colors on Hover */
+.skill-card[data-skill="html5"]:hover .skill-icon {
+  color: #e34c26;
+}
+.skill-card[data-skill="html5"]:hover {
+  border-color: #e34c26 !important;
+  box-shadow: 0 10px 30px rgba(227, 76, 38, 0.3);
+}
+
+.skill-card[data-skill="css3"]:hover .skill-icon {
+  color: #1572b6;
+}
+.skill-card[data-skill="css3"]:hover {
+  border-color: #1572b6 !important;
+  box-shadow: 0 10px 30px rgba(21, 114, 182, 0.3);
+}
+
+.skill-card[data-skill="javascript"]:hover .skill-icon {
+  color: #f7df1e;
+}
+.skill-card[data-skill="javascript"]:hover {
+  border-color: #f7df1e !important;
+  box-shadow: 0 10px 30px rgba(247, 223, 30, 0.3);
+}
+
+.skill-card[data-skill="react"]:hover .skill-icon {
+  color: #61dafb;
+}
+.skill-card[data-skill="react"]:hover {
+  border-color: #61dafb !important;
+  box-shadow: 0 10px 30px rgba(97, 218, 251, 0.3);
+}
+
+.skill-card[data-skill="typescript"]:hover .skill-icon {
+  color: #3178c6;
+}
+.skill-card[data-skill="typescript"]:hover {
+  border-color: #3178c6 !important;
+  box-shadow: 0 10px 30px rgba(49, 120, 198, 0.3);
+}
+
+.skill-card[data-skill="angular"]:hover .skill-icon {
+  color: #dd0031;
+}
+.skill-card[data-skill="angular"]:hover {
+  border-color: #dd0031 !important;
+  box-shadow: 0 10px 30px rgba(221, 0, 49, 0.3);
+}
+
+.skill-card[data-skill="bootstrap"]:hover .skill-icon {
+  color: #7952b3;
+}
+.skill-card[data-skill="bootstrap"]:hover {
+  border-color: #7952b3 !important;
+  box-shadow: 0 10px 30px rgba(121, 82, 179, 0.3);
+}
+
+.skill-card[data-skill="nodejs"]:hover .skill-icon {
+  color: #68a063;
+}
+.skill-card[data-skill="nodejs"]:hover {
+  border-color: #68a063 !important;
+  box-shadow: 0 10px 30px rgba(104, 160, 99, 0.3);
+}
+
+.skill-card[data-skill="expressjs"]:hover .skill-icon {
+  color: #ffffff;
+}
+.skill-card[data-skill="expressjs"]:hover {
+  border-color: #ffffff !important;
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+}
+
+.skill-card[data-skill="python"]:hover .skill-icon {
+  color: #3776ab;
+}
+.skill-card[data-skill="python"]:hover {
+  border-color: #3776ab !important;
+  box-shadow: 0 10px 30px rgba(55, 118, 171, 0.3);
+}
+
+.skill-card[data-skill="java"]:hover .skill-icon {
+  color: #007396;
+}
+.skill-card[data-skill="java"]:hover {
+  border-color: #007396 !important;
+  box-shadow: 0 10px 30px rgba(0, 115, 150, 0.3);
+}
+
+.skill-card[data-skill="php"]:hover .skill-icon {
+  color: #777bb4;
+}
+.skill-card[data-skill="php"]:hover {
+  border-color: #777bb4 !important;
+  box-shadow: 0 10px 30px rgba(119, 123, 180, 0.3);
+}
+
+.skill-card[data-skill="mongodb"]:hover .skill-icon {
+  color: #47a248;
+}
+.skill-card[data-skill="mongodb"]:hover {
+  border-color: #47a248 !important;
+  box-shadow: 0 10px 30px rgba(71, 162, 72, 0.3);
+}
+
+.skill-card[data-skill="mysql"]:hover .skill-icon {
+  color: #4479a1;
+}
+.skill-card[data-skill="mysql"]:hover {
+  border-color: #4479a1 !important;
+  box-shadow: 0 10px 30px rgba(68, 121, 161, 0.3);
+}
+
+.skill-card[data-skill="firebase"]:hover .skill-icon {
+  color: #ffca28;
+}
+.skill-card[data-skill="firebase"]:hover {
+  border-color: #ffca28 !important;
+  box-shadow: 0 10px 30px rgba(255, 202, 40, 0.3);
+}
+
+.skill-card[data-skill="git"]:hover .skill-icon {
+  color: #f05032;
+}
+.skill-card[data-skill="git"]:hover {
+  border-color: #f05032 !important;
+  box-shadow: 0 10px 30px rgba(240, 80, 50, 0.3);
+}
+
+.skill-card[data-skill="github"]:hover .skill-icon {
+  color: #ffffff;
+}
+.skill-card[data-skill="github"]:hover {
+  border-color: #ffffff !important;
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+}
+
+.skill-card[data-skill="docker"]:hover .skill-icon {
+  color: #2496ed;
+}
+.skill-card[data-skill="docker"]:hover {
+  border-color: #2496ed !important;
+  box-shadow: 0 10px 30px rgba(36, 150, 237, 0.3);
+}
+
+.skill-card[data-skill="vs-code"]:hover .skill-icon {
+  color: #007acc;
+  }
+.skill-card[data-skill="vs-code"]:hover {
+  border-color: #007acc !important;
+  box-shadow: 0 10px 30px rgba(0, 122, 204, 0.3);
+}
+
+.skill-card[data-skill="figma"]:hover .skill-icon {
+  color: #f24e1e;
+}
+.skill-card[data-skill="figma"]:hover {
+  border-color: #f24e1e !important;
+  box-shadow: 0 10px 30px rgba(242, 78, 30, 0.3);
+}
+
+.skill-card[data-skill="npm"]:hover .skill-icon {
+  color: #cb3837;
+}
+.skill-card[data-skill="npm"]:hover {
+  border-color: #cb3837 !important;
+  box-shadow: 0 10px 30px rgba(203, 56, 55, 0.3);
+}
+
+.skill-card[data-skill="terminal"]:hover .skill-icon {
+  color: #4eaa25;
+}
+.skill-card[data-skill="terminal"]:hover {
+  border-color: #4eaa25 !important;
+  box-shadow: 0 10px 30px rgba(78, 170, 37, 0.3);
+}
+
+/* Education & CONTACT */
 .education-grid,
 .contact-grid {
   display: flex;
@@ -1335,7 +1513,6 @@ textarea:focus {
   }
 
   .section {
-    padding: 60px 20px 90px 20px;
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
@@ -1393,7 +1570,7 @@ textarea:focus {
   /* PROJECTS */
   .projects-content {
     justify-content: flex-start;
-    padding-top: 40px;
+    
   }
 
   .carousel {

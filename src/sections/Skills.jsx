@@ -10,10 +10,11 @@ const Skills = () => {
                     <motion.div
                         key={idx}
                         className={`skill-card ${skill.category}`}
+                        data-skill={skill.name.toLowerCase().replace(/\./g, '').replace(/\s+/g, '-')}
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        transition={{ delay: idx * 0.05, duration: 0.3 }}
+                        transition={{ duration: 0.3 }}
                         whileHover={{ scale: 1.1, rotate: 5 }}
                     >
                         <span className="skill-icon">{skill.icon && <skill.icon />}</span>
