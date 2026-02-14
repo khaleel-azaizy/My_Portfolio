@@ -174,10 +174,10 @@ function App() {
 
   return (
     <div className="portfolio-container">
-      {/* Background Effects */}
+      
       <Background3D />
       <div className="bg-grid"></div>
-      {/* Removed bg-orbs in favor of 3D background */}
+      
 
       <Navbar
         sections={sections}
@@ -185,7 +185,7 @@ function App() {
         onNavClick={handleNavigation}
       />
 
-      {/* Main Content Area */}
+    
       <main className="main-content" ref={mainContentRef}>
         <AnimatePresence mode="popLayout">
           <motion.section

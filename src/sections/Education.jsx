@@ -19,7 +19,7 @@ const Education = () => {
                         <div className="edu-icon"><FaGraduationCap /></div>
                         <h3 className="edu-degree">B.Sc. Software Engineering</h3>
                         <p className="edu-school">Kinneret Academic College</p>
-                        <p className="edu-year">2021 – Present</p>
+                        <p className="edu-year">2021 – 2026</p>
                         <p className="edu-desc">
                             Focusing on software architecture, algorithms, and system design.
                         </p>

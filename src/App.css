@@ -24,18 +24,15 @@
   padding: 0;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  /* Prevent tap highlight on iOS/Safari */
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Smooth font rendering for all browsers */
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
-/* HIDE SCROLLBAR */
 * {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
@@ -57,9 +54,6 @@ html {
   overflow: hidden;
 }
 
-/* ========================================
-   LOADING SCREEN
-   ======================================== */
 
 .loading-screen {
   position: fixed;
@@ -139,10 +133,6 @@ html {
   }
 }
 
-/* ========================================
-   BACKGROUND EFFECTS
-   ======================================== */
-
 .portfolio-container {
   display: flex;
   width: 100vw;
@@ -200,10 +190,6 @@ html {
     opacity: 1;
   }
 }
-
-/* ========================================
-   NAVBAR
-   ======================================== */
 
 .navbar {
   width: 100px;
@@ -350,9 +336,6 @@ html {
   box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
 }
 
-/* ========================================
-   MAIN CONTENT AREA
-   ======================================== */
 
 .main-content {
   flex: 1;
@@ -360,7 +343,6 @@ html {
   overflow: hidden;
   position: relative;
   z-index: 1;
-  /* Enable smooth touch scrolling on mobile */
   -webkit-overflow-scrolling: touch;
   touch-action: pan-y pan-x;
 }
@@ -377,7 +359,6 @@ html {
   position: absolute;
   top: 0;
   left: 0;
-  /* Enable smooth scrolling for iOS and touch devices */
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
 }
@@ -405,10 +386,6 @@ html {
   background: var(--red);
   box-shadow: 0 0 10px 2px var(--red-glow);
 }
-
-/* ========================================
-   HERO / COMPONENT STYLES
-   ======================================== */
 
 .hero-content {
   width: 100%;
@@ -480,7 +457,6 @@ html {
   color: var(--white);
   font-size: clamp(14px, 1rem, 1.5rem);
   font-weight: 700;
-  text-transform: lowercase;
   letter-spacing: 2px;
   border: none;
   cursor: pointer;
@@ -510,7 +486,7 @@ html {
 .hero-cta::after {
   content: '';
   position: absolute;
-  left: 10px;
+  left: 8px;
   top: 50%;
   transform: translateY(-50%) rotate(45deg);
   width: 10px;
@@ -530,7 +506,7 @@ html {
 .hero-cta:hover::before {
   width: 25px;
   height: 3px;
-  left: 20px;
+  left: 18px;
   border-radius: 0;
 }
 
@@ -663,10 +639,39 @@ html {
 .stat-card {
   background: rgba(255, 255, 255, 0.03);
   padding: 40px;
-  border-left: 4px solid var(--red);
   border-radius: 0 20px 20px 0;
+  position: relative;
+  z-index: 2;
+  border: 2px solid var(--red);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+/* ABOUT ANIMATION UPDATES */
+.about-stats {
+  position: relative;
 }
 
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -20px;
+  width: 8px;
+  height: 100%;
+  background: rgb(255, 0, 0);
+  z-index: -1;
+}
+.stat-card-bg {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  border-radius: 0 20px 20px 0;
+  opacity: 0.5;
+}
 .stat-number {
   display: block;
   font-size: 4rem;
@@ -696,22 +701,6 @@ html {
   width: 100%;
 }
 
-.slider-btn {
-  background: transparent;
-  border: 1px solid var(--gray-dark);
-  color: var(--white);
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  font-size: 24px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.slider-btn:hover {
-  background: var(--red);
-  border-color: var(--red);
-}
 
 .projects-grid {
   flex: 1;
@@ -726,58 +715,17 @@ html {
 .project-card {
   flex: 1;
   min-width: 300px;
-  background: rgba(20, 20, 20, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: linear-gradient(135deg, rgba(133, 8, 8, 0.199), rgba(128, 10, 10, 0.02));
+  border: 2px solid rgb(167, 1, 1);
   padding: 30px;
-  border-radius: 16px;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  border-radius: 5px;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   position: relative;
   overflow: hidden;
 }
 
-.project-card.gradient-emerald::before {
-  background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.2), transparent 70%);
-}
 
-.project-card.gradient-ocean::before {
-  background: radial-gradient(circle at top right, rgba(6, 182, 212, 0.2), transparent 70%);
-}
-
-.project-card.gradient-sunset::before {
-  background: radial-gradient(circle at top right, rgba(249, 115, 22, 0.2), transparent 70%);
-}
-
-.project-card.gradient-purple::before {
-  background: radial-gradient(circle at top right, rgba(139, 92, 246, 0.2), transparent 70%);
-}
-
-.project-card.gradient-rose::before {
-  background: radial-gradient(circle at top right, rgba(244, 63, 94, 0.2), transparent 70%);
-}
-
-.project-card.gradient-cyan::before {
-  background: radial-gradient(circle at top right, rgba(6, 182, 212, 0.2), transparent 70%);
-}
-
-.project-card.gradient-amber::before {
-  background: radial-gradient(circle at top right, rgba(245, 158, 11, 0.2), transparent 70%);
-}
-
-.project-card.gradient-mint::before {
-  background: radial-gradient(circle at top right, rgba(52, 211, 153, 0.2), transparent 70%);
-}
-
-.project-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-}
 
 .project-card>* {
   position: relative;
@@ -823,7 +771,7 @@ html {
   font-size: 11px;
   background: rgba(255, 255, 255, 0.05);
   padding: 5px 10px;
-  border-radius: 20px;
+  border-radius: 0;
   color: #ddd;
 }
 
@@ -842,7 +790,7 @@ html {
   font-weight: 600;
   padding: 8px 16px;
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 6px;
+  border-radius: 0;
   transition: all 0.3s;
 }
 
@@ -850,27 +798,6 @@ html {
   background: var(--red);
 }
 
-.slider-dots {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 30px;
-}
-
-.slider-dots .dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #333;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.slider-dots .dot.active {
-  background: var(--red);
-  transform: scale(1.2);
-}
 
 /* SKILLS SECTION */
 .skills-grid {
@@ -1277,9 +1204,6 @@ textarea:focus {
   }
 }
 
-/* ========================================
-   PHASE 2 UPDATES
-   ======================================== */
 
 /* DRAGGABLE PROJECT CAROUSEL */
 .projects-content {
@@ -1312,12 +1236,7 @@ textarea:focus {
   padding: 20px 40px;
 }
 
-.project-card {
-  min-width: 320px;
-  max-width: 320px;
-  /* Override previous flex behavior */
-  flex: none;
-}
+
 
 /* EDUCATION UPDATE */
 .education-column {
@@ -1376,36 +1295,9 @@ textarea:focus {
   line-height: 1.6;
 }
 
-/* ABOUT ANIMATION UPDATES */
-.about-stats {
-  position: relative;
-}
 
-.stat-card {
-  position: relative;
-  z-index: 2;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-}
 
-.stat-card-bg {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 100%;
-  height: 100%;
-  border: 2px solid var(--red);
-  z-index: 1;
-  border-radius: 0 20px 20px 0;
-  opacity: 0.5;
-}
 
-/* ========================================
-   PHASE 3 MOBILE POLISH
-   ======================================== */
-
-/* 3D CONTAINERS */
 .canvas-container {
   position: absolute;
   top: 0;

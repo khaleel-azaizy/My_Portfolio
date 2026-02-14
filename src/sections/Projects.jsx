@@ -50,14 +50,15 @@ const Projects = () => {
                         {projects.map((project, idx) => (
                             <motion.div
                                 key={project.title}
-                                className={`project-card ${project.gradient}`}
+                                className={`project-card`}
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: idx * 0.1, duration: 0.4 }}
+                                transition={{duration: 0.4 }}
                                 whileHover={{
                                     y: -10,
-                                    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
-                                    borderColor: 'rgba(230, 57, 70, 0.3)'
+                                    borderColor: 'rgb(255, 1, 22)',
+                                    background: 'linear-gradient(135deg, rgba(185, 11, 11, 0.38), rgba(128, 10, 10, 0.19))'
+
                                 }}
                                 style={{
                                     minWidth: isMobile ? '100%' : '320px',
