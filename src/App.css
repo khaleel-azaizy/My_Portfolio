@@ -365,7 +365,7 @@ html {
 
 .section-heading {
   font-family: 'Orbitron', sans-serif;
-  font-size: clamp(28px, 4vw, 44px);
+  font-size: clamp(28px, 4vw, 50px);
   font-weight: 800;
   color: var(--white);
   margin: 50px 0 30px;
@@ -389,7 +389,7 @@ html {
 
 .hero-content {
   width: 100%;
-  max-width: 1300px;
+  max-width: 1500px;
   z-index: 1;
 }
 
@@ -813,7 +813,7 @@ html {
   padding: 25px;
   border-radius: 12px;
   display: flex;
-  border: 1px solid rgba(117, 49, 49, 0.384);
+  border: 2px solid rgba(117, 49, 49, 0.384);
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -1391,6 +1391,83 @@ textarea:focus {
   position: relative;
   z-index: 10;
 }
+/* ========================================
+   LARGE SCREENS — scale up to fill space
+   ======================================== */
+
+@media (min-width: 1440px) {
+  .section-heading {
+    font-size: clamp(30px, 3vw, 50px);
+    letter-spacing: 10px;
+    margin: 60px 0 40px;
+  }
+
+  .section-heading::before {
+    height: 5px;
+    bottom: -18px;
+  }
+
+  .about-grid {
+    max-width: 1500px;
+    gap: 80px;
+  }
+
+  .about-intro {
+    font-size: 1.85rem;
+    line-height: 1.5;
+    margin-bottom: 35px;
+  }
+
+  .about-body {
+    font-size: 1.3rem;
+    line-height: 1.9;
+    margin-bottom: 25px;
+  }
+
+  .stat-card {
+    padding: 55px;
+  }
+
+  .stat-number {
+    font-size: 5rem;
+    margin-bottom: 15px;
+  }
+
+  .stat-label {
+    font-size: 1.4rem;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+  }
+
+  .stat-sublabel {
+    font-size: 1.1rem;
+  }
+
+  .hero-description {
+    font-size: 1.5rem;
+    max-width: 620px;
+  }
+
+  .hero-kicker {
+    font-size: 18px;
+    letter-spacing: 10px;
+  }
+
+  .hero-title {
+    font-size: clamp(28px, 3.5vw, 42px);
+  }
+
+  .hero-cta {
+    padding: 22px 42px;
+    font-size: 1.1rem;
+  }
+
+  .section {
+    padding: 60px 80px;
+  }
+}
+
+
 /* Responsiveness */
 @media (max-width: 1024px) {
   .portfolio-container {
@@ -1439,7 +1516,17 @@ textarea:focus {
   }
 
   .nav-item:hover {
-    flex-grow: 5;
+    flex-grow: 1;
+  }
+
+  .nav-item:hover .nav-icon {
+    color: var(--gray-dark);
+    transform: none;
+  }
+
+  .nav-item.active:hover .nav-icon {
+    color: var(--red);
+    transform: translateY(-5px);
   }
 
   .nav-label {
@@ -1535,10 +1622,18 @@ textarea:focus {
   }
 
   /* HERO */
+  .hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
   .hero-grid {
     grid-template-columns: 1fr;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 0;
+    gap: 0;
   }
 
   .hero-visual {
@@ -1546,20 +1641,44 @@ textarea:focus {
   }
 
   .hero-text {
-    margin-top: 2rem;
+    margin-top: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .hero-kicker {
+    font-size: 14px;
+    letter-spacing: 6px;
+    margin-bottom: 5px;
+  }
+
+  .hero-name {
+    font-size: clamp(2rem, 9vw, 3rem);
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  .hero-title {
+    font-size: clamp(18px, 4.5vw, 26px);
+    margin-bottom: 20px;
+    color: var(--gray);
+    min-height: 1.5em;
   }
 
   .hero-description {
-    margin-top: 1rem;
-    font-size: 1rem;
-    max-width: 100%;
+    margin-top: 0;
+    font-size: 1.05rem;
+    max-width: 90%;
+    line-height: 1.7;
+    margin-bottom: 30px;
   }
+
   .hero-cta {
-    margin-top: 4rem;
-   
+    margin-top: 0;
+    padding: 16px 28px;
   }
   /* ABOUT */
   .about-grid {
@@ -1663,40 +1782,43 @@ textarea:focus {
 
   /* HERO */
   .hero-grid {
-    gap: 20px;
-    margin-top: 10px;
+    gap: 0;
+    margin-top: 0;
   }
 
   .hero-kicker {
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
 
   .hero-name {
-    font-size: clamp(1.6rem, 8vw, 2.5rem);
-    height: clamp(2.5rem, 8vh, 5rem);
+    font-size: clamp(1.8rem, 9vw, 2.8rem);
+    height: auto;
+    margin-bottom: 8px;
   }
 
   .hero-title {
-    font-size: clamp(16px, 4.5vw, 22px);
-    margin-bottom: 20px;
+    font-size: clamp(15px, 4vw, 20px);
+    margin-bottom: 15px;
+    min-height: 1.4em;
   }
 
   .hero-description {
-    font-size: 0.9rem;
-    line-height: 1.6;
+    font-size: 0.88rem;
+    line-height: 1.65;
     margin-bottom: 25px;
+    max-width: 95%;
   }
 
   .hero-cta {
-    padding: 14px 24px;
-    font-size: 12px;
+    padding: 12px 26px;
+    font-size: 0.85rem;
     letter-spacing: 1px;
   }
 
   .buttons-box {
-    margin-top: 2rem;
+    margin-top: 0;
     gap: 10px !important;
     align-items: center;
   }
@@ -1884,10 +2006,10 @@ textarea:focus {
 
   /* NAVBAR */
   .navbar {
-    height: 55px;
+    height: 60px;
   }
 
   .nav-icon {
-    font-size: 18px;
+    font-size: 24px;
   }
 }
